@@ -38,6 +38,8 @@ android:
     - extra-android-support
 
 before_script:
+  - gem install travis
+  - travis encrypt c293eaeeeca36f5645ae518a5ac8717289d50b0a
   - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
   - emulator -avd test -no-skin -no-audio -no-window &
   - android-wait-for-emulator
@@ -47,13 +49,6 @@ script:
   - android list target
   - ./gradlew connectedAndroidTest
 
-deploy:
-  	provider: releases
-    api_key: "c0423ca62e4681b76ebe9a022f18a53559f451c3"
-    file: "/app/build/outputs/app-debug.apk"
-    skip_cleanup: true
-    on:
-      tags: true
 
 notifications:
         email:
