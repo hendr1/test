@@ -32,7 +32,18 @@ android:
 
     # Specify at least one system image,
     # if you need to run emulator(s) during your tests
-    #- sys-img-armeabi-v7a-android-19
+    - sys-img-armeabi-v7a-android-19
     #- sys-img-x86-android-17
 
     - extra-android-support
+
+script:
+      - ./gradlew assembleDebug -PdisablePreDex
+      - ./gradlew assembleAndroidTest -PdisablePreDex
+      - android-wait-for-emulator
+      - adb devices
+      - adb shell input keyevent 82 &amp;
+      - adb install -r app/build/outputs/apk/app-debug.apk
+      - adb install -r app/build/outputs/apk/app-debug-androidTest-unaligned.apk
+      - ./gradlew check -PdisablePreDex --continue --stacktrace
+      - .buildscript/launchInstrumentationTests.sh
