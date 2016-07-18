@@ -41,7 +41,7 @@ script:
       - ./gradlew assembleDebug -PdisablePreDex
       - ./gradlew assembleAndroidTest -PdisablePreDex
 
-      notifications:
+notifications:
         email:
           recipients:
             - hendri_huai@yahoo.com
