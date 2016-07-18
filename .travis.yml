@@ -40,3 +40,11 @@ android:
 script:
       - ./gradlew assembleDebug -PdisablePreDex
       - ./gradlew assembleAndroidTest -PdisablePreDex
+
+      notifications:
+        email:
+          recipients:
+            - hendri_huai@yahoo.com
+            - hendri.huai@gmail.com
+          on_success: [always|never|change] # default: change
+          on_failure: [always|never|change] # default: always
