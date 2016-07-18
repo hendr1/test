@@ -47,6 +47,14 @@ script:
   - android list target
   - ./gradlew connectedAndroidTest
 
+deploy:
+  	provider: releases
+    api_key: "c0423ca62e4681b76ebe9a022f18a53559f451c3"
+    file: "/app/build/outputs/app-debug.apk"
+    skip_cleanup: true
+    on:
+      tags: true
+
 notifications:
         email:
           recipients:
